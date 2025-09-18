@@ -1,9 +1,36 @@
-body{
+@font-face {
+  font-family: 'Barbra';
+  src: url('/fonts/Barbra-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Barbra-thin';
+  src: url('fonts/Barbera Thin Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+html,body{
+    margin: 0;
+    height: 100vh;
+}
+
+.header{
     display: flex;
-    color: red;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .heading{
     text-align: center;
-    color: red;
+    font-family: 'Barbra', sans-serif;
+    margin: 0px;
+    letter-spacing: 3px;
+}
+
+.heading-name{
+    font-size: 50px;
 }
