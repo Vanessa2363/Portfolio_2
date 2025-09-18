@@ -10,7 +10,7 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
-    "serve": "live-server --port=3000 --watch=dist,index.html --open=./index.html",
+    "serve": "live-server --port=3000 --watch=dist,index.html,style.css --open=./index.html",
     "dev": "npm-run-all --parallel watch serve",
     "postinstall": "tsc"
   }

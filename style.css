@@ -1,0 +1,9 @@
+body{
+    display: flex;
+    color: red;
+}
+
+.heading{
+    text-align: center;
+    color: red;
+}
