@@ -1,0 +1,17 @@
+{
+  "name": "my-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "devDependencies": {
+    "typescript": "^5.6.0",
+    "live-server": "^1.2.2",
+    "npm-run-all": "^4.1.5"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "serve": "live-server --port=3000 --watch=dist,index.html --open=./index.html",
+    "dev": "npm-run-all --parallel watch serve",
+    "postinstall": "tsc"
+  }
+}
