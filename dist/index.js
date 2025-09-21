@@ -1,8 +1,9 @@
 "use strict";
 document.addEventListener("DOMContentLoaded", () => {
     const typewriterConfiguration = [
-        { text: "Vanessa Guo", elementId: "header-name-animate", delay: 0 },
-        { text: "Developer, Designer, Trailblazer", elementId: "header-about-animate", delay: 1000 },
+        { text: "Vanessa", elementId: "header-first-animate", delay: 0 },
+        { text: "Guo", elementId: "header-last-animate", delay: 500 },
+        { text: "Developer & Designer", elementId: "header-about-animate", delay: 1000 },
     ];
     typewriterConfiguration.forEach(({ text, elementId, delay, speed = 80 }) => {
         const targetElement = document.getElementById(elementId);
@@ -21,4 +22,15 @@ document.addEventListener("DOMContentLoaded", () => {
             }, speed);
         }, delay);
     });
+});
+function animateLogos() {
+    const logos = document.querySelectorAll('.logo-bg');
+    logos.forEach((logo, index) => {
+        setTimeout(() => {
+            logo.classList.add('active');
+        }, index * 200);
+    });
+}
+document.addEventListener("DOMContentLoaded", () => {
+    animateLogos();
 });
