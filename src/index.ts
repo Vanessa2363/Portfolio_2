@@ -38,7 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
   animateLogos();
 
   const buttons = Array.from(document.querySelectorAll<HTMLButtonElement>('.project-filters .filter-btn'));
-  const items   = Array.from(document.querySelectorAll<HTMLElement>('.project-grid > *')); 
+  const navLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('.nav a'));
+  const items   = Array.from(document.querySelectorAll<HTMLElement>('.project-grid > *'));
 
   const getCard = (item: HTMLElement): HTMLElement | null =>
     item.matches('.projects-card') ? item : (item.querySelector('.projects-card') as HTMLElement | null);
@@ -49,16 +50,21 @@ document.addEventListener('DOMContentLoaded', () => {
     return ds ? ds.split(/\s+/) : [];
   };
 
-  const setActive = (btn: HTMLButtonElement) => {
-    buttons.forEach(b => b.classList.toggle('is-active', b === btn));
+  const setActive = (el: HTMLElement) => {
+    [...buttons, ...navLinks].forEach(b => b.classList.remove('is-active'));
+    el.classList.add('is-active');
+
+    [...buttons, ...navLinks].forEach(b =>
+      b.setAttribute('aria-pressed', String(b.classList.contains('is-active')))
+    );
   };
 
   const applyFilter = (key?: string) => {
     const f = (key || 'all').toLowerCase();
     items.forEach(item => {
       const tags = getTags(item);
-      const matches = f === 'all' || tags.indexOf(f) !== -1; 
-      item.classList.toggle('hidden', !matches);             
+      const matches = f === 'all' || tags.indexOf(f) !== -1;
+      item.classList.toggle('hidden', !matches);
     });
   };
 
@@ -76,6 +82,20 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', () => {
       setActive(btn);
       applyFilter(btn.dataset.filter);
+    });
+  });
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const text = (link.textContent || '').trim().toLowerCase();
+
+      let filterKey = text;
+      if (text === 'home') filterKey = 'all';
+      if (text === 'resume') filterKey = 'none';
+
+      setActive(link);
+      applyFilter(filterKey);
     });
   });
 });

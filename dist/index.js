@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     animateLogos();
     const buttons = Array.from(document.querySelectorAll('.project-filters .filter-btn'));
+    const navLinks = Array.from(document.querySelectorAll('.nav a'));
     const items = Array.from(document.querySelectorAll('.project-grid > *'));
     const getCard = (item) => item.matches('.projects-card') ? item : item.querySelector('.projects-card');
     const getTags = (item) => {
@@ -36,8 +37,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const ds = ((card === null || card === void 0 ? void 0 : card.dataset.tags) || '').toLowerCase().trim();
         return ds ? ds.split(/\s+/) : [];
     };
-    const setActive = (btn) => {
-        buttons.forEach(b => b.classList.toggle('is-active', b === btn));
+    const setActive = (el) => {
+        [...buttons, ...navLinks].forEach(b => b.classList.remove('is-active'));
+        el.classList.add('is-active');
+        [...buttons, ...navLinks].forEach(b => b.setAttribute('aria-pressed', String(b.classList.contains('is-active'))));
     };
     const applyFilter = (key) => {
         const f = (key || 'all').toLowerCase();
@@ -58,6 +61,19 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.addEventListener('click', () => {
             setActive(btn);
             applyFilter(btn.dataset.filter);
+        });
+    });
+    navLinks.forEach(link => {
+        link.addEventListener('click', e => {
+            e.preventDefault();
+            const text = (link.textContent || '').trim().toLowerCase();
+            let filterKey = text;
+            if (text === 'home')
+                filterKey = 'all';
+            if (text === 'resume')
+                filterKey = 'none';
+            setActive(link);
+            applyFilter(filterKey);
         });
     });
 });
