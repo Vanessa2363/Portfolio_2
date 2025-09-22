@@ -65,13 +65,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     navLinks.forEach(link => {
         link.addEventListener('click', e => {
-            e.preventDefault();
             const text = (link.textContent || '').trim().toLowerCase();
-            let filterKey = text;
-            if (text === 'home')
-                filterKey = 'all';
-            if (text === 'resume')
-                filterKey = 'none';
+            if (text === 'resume') {
+                e.preventDefault();
+                window.open('public/Vanessa_Guo_Resume.pdf', '_blank', 'noopener');
+                return;
+            }
+            e.preventDefault();
+            const filterKey = text === 'home' ? 'all' : text;
             setActive(link);
             applyFilter(filterKey);
         });

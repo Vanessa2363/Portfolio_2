@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const buttons = Array.from(document.querySelectorAll<HTMLButtonElement>('.project-filters .filter-btn'));
   const navLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('.nav a'));
-  const items   = Array.from(document.querySelectorAll<HTMLElement>('.project-grid > *'));
+  const items = Array.from(document.querySelectorAll<HTMLElement>('.project-grid > *'));
 
   const getCard = (item: HTMLElement): HTMLElement | null =>
     item.matches('.projects-card') ? item : (item.querySelector('.projects-card') as HTMLElement | null);
@@ -53,7 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const setActive = (el: HTMLElement) => {
     [...buttons, ...navLinks].forEach(b => b.classList.remove('is-active'));
     el.classList.add('is-active');
-
     [...buttons, ...navLinks].forEach(b =>
       b.setAttribute('aria-pressed', String(b.classList.contains('is-active')))
     );
@@ -87,13 +86,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   navLinks.forEach(link => {
     link.addEventListener('click', e => {
-      e.preventDefault();
       const text = (link.textContent || '').trim().toLowerCase();
-
-      let filterKey = text;
-      if (text === 'home') filterKey = 'all';
-      if (text === 'resume') filterKey = 'none';
-
+      if (text === 'resume') {
+        e.preventDefault();
+        window.open('public/Vanessa_Guo_Resume.pdf', '_blank', 'noopener');
+        return;
+      }
+      e.preventDefault();
+      const filterKey = text === 'home' ? 'all' : text;
       setActive(link);
       applyFilter(filterKey);
     });
