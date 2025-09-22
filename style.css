@@ -12,6 +12,14 @@
   font-style: normal;
 }
 
+@font-face{
+  font-family: 'Manrope';
+  src: url('/fonts/Manrope-Light.woff2') format('woff2');
+  font-weight: 300;        
+  font-style: normal;
+  font-display: swap;
+}
+
 html,body{
   margin: 0;
   height: 100vh;
@@ -44,18 +52,21 @@ html,body{
 
 .heading{
   text-align: center;
-  font-family: 'Barbra', sans-serif;
+  /* font-family: 'Barbra', sans-serif; */
   margin: 0px;
   letter-spacing: 3px;
 }
 
 .heading-name{
-  font-size: 100px;
+  font-family: 'Barbra', sans-serif;
+  font-size: 80px;
   margin: -20px;
 }
 
 .heading-about{
+  font-family: 'Barbra', sans-serif;
   font-size: 40px;
+  margin-top: 10px;
 }
 
 .logo{
@@ -106,3 +117,143 @@ html,body{
 .header-tech-logos .logo-bg:nth-child(6) {
   transform: translateY(30px);
 }
+
+.computer-image{
+  position: absolute;          
+  right: 2vw;                   
+  top: 50%;                    
+  width: 400px;
+}
+
+/* Section: Nav */
+.nav_work_pane{
+  display: grid;
+  grid-template-rows: 1fr;
+}
+
+.nav{
+  position: sticky;
+  top: 0;
+  background: #ffffff;
+  text-align: center;
+  border-bottom : 1px solid rgba(0,0,0,0.1)
+}
+
+.nav-links{
+  display: inline-block;
+  margin: 10px 20px;
+}
+
+.nav-links a{
+  text-decoration: none;
+  font-family: 'Manrope', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 300;
+  color: black;
+  font-size: 15px;
+}
+
+/* Section: Nav -> Work */
+.work-title{
+  display: flex;
+  justify-content: center;
+  margin: 40px;
+  font-family: 'Manrope', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 500;
+  font-size: 30px;
+}
+
+.clickable-card{
+  text-decoration: none;
+  color: black;
+}
+
+
+.project-filters{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+
+.filter-btn{
+  padding: 13px 20px;
+  border-radius: 20px;
+  border: none;
+  font-family: 'Manrope', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.filter-btn.is-active[data-filter="all"]{
+  background:#111; color:#fff; border-color:#111;
+}
+.filter-btn.is-active[data-filter="develop"]{
+  background:#92a2a6; color:#111; border-color:#92a2a6;
+}
+.filter-btn.is-active[data-filter="design"]{
+  background:#d3b6d3; color:#111; border-color:#d3b6d3;
+}
+.filter-btn.is-active[data-filter="leadership"]{
+  background:#687d31; color:#fff; border-color:#687d31;
+}
+
+.project-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 250px);
+  justify-content: center;
+  margin: 30px;
+  gap: 30px;
+  min-height: 500px;
+}
+
+.project-grid > .hidden {
+  display: none !important;
+}
+
+.project-image{
+  width: 250px;
+  height: 180px;
+  border-radius: 10px;
+}
+
+.project-name{
+  font-family: 'Manrope', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 500;
+  font-size: 25px;
+  margin: 8px 0px;
+}
+
+.project-description{
+  font-family: 'Manrope', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 450;
+  color: gray;
+  line-height: 1.4;
+}
+
+.project-tags{
+  display: flex;
+  gap: 15px;
+}
+
+.tag{
+  font-family: 'Manrope', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  gap: 30px;
+}
+
+.develop-tag{
+  color: #92a2a6;
+}
+
+.design-tag{
+  color: #d3b6d3;
+}
+.leadership-tag{
+  color: #687d31;
+}
+
+/* Star */
+
+
