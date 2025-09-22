@@ -1,13 +1,6 @@
 @font-face {
   font-family: 'Barbra';
-  src: url('/fonts/Barbra-Regular.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Barbra-thin';
-  src: url('fonts/Barbera Thin Regular.otf') format('opentype');
+  src: url('fonts/Barbra-Regular.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
