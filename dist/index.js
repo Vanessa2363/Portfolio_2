@@ -29,7 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     animateLogos();
     const buttons = Array.from(document.querySelectorAll('.project-filters .filter-btn'));
-    const navLinks = Array.from(document.querySelectorAll('.nav a'));
     const items = Array.from(document.querySelectorAll('.project-grid > *'));
     const getCard = (item) => item.matches('.projects-card') ? item : item.querySelector('.projects-card');
     const getTags = (item) => {
@@ -38,9 +37,9 @@ document.addEventListener('DOMContentLoaded', () => {
         return ds ? ds.split(/\s+/) : [];
     };
     const setActive = (el) => {
-        [...buttons, ...navLinks].forEach(b => b.classList.remove('is-active'));
+        [...buttons, ...Array.from(document.querySelectorAll('.nav a'))].forEach(b => b.classList.remove('is-active'));
         el.classList.add('is-active');
-        [...buttons, ...navLinks].forEach(b => b.setAttribute('aria-pressed', String(b.classList.contains('is-active'))));
+        [...buttons, ...Array.from(document.querySelectorAll('.nav a'))].forEach(b => b.setAttribute('aria-pressed', String(b.classList.contains('is-active'))));
     };
     const applyFilter = (key) => {
         const f = (key || 'all').toLowerCase();
@@ -62,6 +61,12 @@ document.addEventListener('DOMContentLoaded', () => {
             setActive(btn);
             applyFilter(btn.dataset.filter);
         });
+    });
+    const navLinks = Array.from(document.querySelectorAll('.nav a')).filter(a => {
+        const href = a.getAttribute('href') || '';
+        const isExternal = /^https?:/i.test(href) || href.startsWith('mailto:') || a.target === '_blank';
+        const isIconLink = !!a.querySelector('.nav-icon');
+        return !isExternal && !isIconLink;
     });
     navLinks.forEach(link => {
         link.addEventListener('click', e => {

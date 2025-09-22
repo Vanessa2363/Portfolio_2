@@ -38,7 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
   animateLogos();
 
   const buttons = Array.from(document.querySelectorAll<HTMLButtonElement>('.project-filters .filter-btn'));
-  const navLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('.nav a'));
   const items = Array.from(document.querySelectorAll<HTMLElement>('.project-grid > *'));
 
   const getCard = (item: HTMLElement): HTMLElement | null =>
@@ -51,9 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const setActive = (el: HTMLElement) => {
-    [...buttons, ...navLinks].forEach(b => b.classList.remove('is-active'));
+    [...buttons, ...Array.from(document.querySelectorAll<HTMLAnchorElement>('.nav a'))].forEach(b => b.classList.remove('is-active'));
     el.classList.add('is-active');
-    [...buttons, ...navLinks].forEach(b =>
+    [...buttons, ...Array.from(document.querySelectorAll<HTMLAnchorElement>('.nav a'))].forEach(b =>
       b.setAttribute('aria-pressed', String(b.classList.contains('is-active')))
     );
   };
@@ -82,6 +81,13 @@ document.addEventListener('DOMContentLoaded', () => {
       setActive(btn);
       applyFilter(btn.dataset.filter);
     });
+  });
+
+  const navLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('.nav a')).filter(a => {
+    const href = a.getAttribute('href') || '';
+    const isExternal = /^https?:/i.test(href) || href.startsWith('mailto:') || a.target === '_blank';
+    const isIconLink = !!a.querySelector('.nav-icon');
+    return !isExternal && !isIconLink;
   });
 
   navLinks.forEach(link => {

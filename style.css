@@ -96,7 +96,6 @@ html,body{
   border: 1px solid #ddd;                 
   box-shadow: 0 2px 6px rgba(0,0,0,0.1); 
     
-  /* Animation */
   opacity: 0;
   transform: translateY(-120px); 
   transition: transform 0.6s ease, opacity 0.6s ease;
@@ -107,7 +106,6 @@ html,body{
   transform: translateY(0);
 }
 
-/* changed: staggered placement */
 .header-tech-logos .logo-bg:nth-child(1) {
   transform: translateY(0px);
 }
@@ -134,7 +132,6 @@ html,body{
   width: 400px;
 }
 
-/* Section: Nav */
 .nav_work_pane{
   display: grid;
   grid-template-rows: 1fr;
@@ -159,6 +156,15 @@ html,body{
   font-weight: 300;
   color: black;
   font-size: 15px;
+}
+
+.nav-icon {
+  width: 25px;
+  vertical-align: middle;
+}
+
+.nav-icon:hover {
+  opacity: 0.7;
 }
 
 /* Section: Nav -> Work */
