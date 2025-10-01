@@ -20,14 +20,14 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   typewriterConfiguration.forEach(({ text, elementId, delay, speed = 80 }) => {
-    const el = document.getElementById(elementId);
-    if (!el) return;
+    const elemId = document.getElementById(elementId);
+    if (!elemId) return;
 
     let i = 0;
     setTimeout(() => {
       const timer = setInterval(() => {
         if (i < text.length) {
-          el.textContent = (el.textContent || '') + text.charAt(i++);
+          elemId.textContent = (elemId.textContent || '') + text.charAt(i++);
         } else {
           clearInterval(timer);
         }
@@ -43,12 +43,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const getCard = (item: HTMLElement): HTMLElement | null =>
     item.matches('.projects-card') ? item : (item.querySelector('.projects-card') as HTMLElement | null);
 
-  const getTags = (item: HTMLElement): string[] => {
-    const card = getCard(item);
-    const ds = (card?.dataset.tags || '').toLowerCase().trim();
-    return ds ? ds.split(/\s+/) : [];
-  };
+  const getTags = (item: HTMLElement): string[] => 
+    (getCard(item)?.dataset.tags ?? "")
+      .toLowerCase()
+      .trim()
+      .split(/\s+/)
 
+// Sets filter "active" based off of what is pressed (Design purpose)
   const setActive = (el: HTMLElement) => {
     [...buttons, ...Array.from(document.querySelectorAll<HTMLAnchorElement>('.nav a'))].forEach(b => b.classList.remove('is-active'));
     el.classList.add('is-active');
@@ -83,6 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // For filtering -> so linkeding = mail isn't apart of filtering logic
   const navLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('.nav a')).filter(a => {
     const href = a.getAttribute('href') || '';
     const isExternal = /^https?:/i.test(href) || href.startsWith('mailto:') || a.target === '_blank';
@@ -90,6 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return !isExternal && !isIconLink;
   });
 
+  //Connects nav to filter logic (update to the above)
   navLinks.forEach(link => {
     link.addEventListener('click', e => {
       const text = (link.textContent || '').trim().toLowerCase();
@@ -105,3 +108,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+

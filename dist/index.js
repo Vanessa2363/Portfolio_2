@@ -12,14 +12,14 @@ document.addEventListener('DOMContentLoaded', () => {
         { text: 'Developer & Designer', elementId: 'header-about-animate', delay: 1000 },
     ];
     typewriterConfiguration.forEach(({ text, elementId, delay, speed = 80 }) => {
-        const el = document.getElementById(elementId);
-        if (!el)
+        const elemId = document.getElementById(elementId);
+        if (!elemId)
             return;
         let i = 0;
         setTimeout(() => {
             const timer = setInterval(() => {
                 if (i < text.length) {
-                    el.textContent = (el.textContent || '') + text.charAt(i++);
+                    elemId.textContent = (elemId.textContent || '') + text.charAt(i++);
                 }
                 else {
                     clearInterval(timer);
@@ -32,10 +32,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const items = Array.from(document.querySelectorAll('.project-grid > *'));
     const getCard = (item) => item.matches('.projects-card') ? item : item.querySelector('.projects-card');
     const getTags = (item) => {
-        const card = getCard(item);
-        const ds = ((card === null || card === void 0 ? void 0 : card.dataset.tags) || '').toLowerCase().trim();
-        return ds ? ds.split(/\s+/) : [];
+        var _a, _b;
+        return ((_b = (_a = getCard(item)) === null || _a === void 0 ? void 0 : _a.dataset.tags) !== null && _b !== void 0 ? _b : "")
+            .toLowerCase()
+            .trim()
+            .split(/\s+/);
     };
+    // Sets filter "active" based off of what is pressed (Design purpose)
     const setActive = (el) => {
         [...buttons, ...Array.from(document.querySelectorAll('.nav a'))].forEach(b => b.classList.remove('is-active'));
         el.classList.add('is-active');
@@ -62,12 +65,14 @@ document.addEventListener('DOMContentLoaded', () => {
             applyFilter(btn.dataset.filter);
         });
     });
+    // For filtering -> so linkeding = mail isn't apart of filtering logic
     const navLinks = Array.from(document.querySelectorAll('.nav a')).filter(a => {
         const href = a.getAttribute('href') || '';
         const isExternal = /^https?:/i.test(href) || href.startsWith('mailto:') || a.target === '_blank';
         const isIconLink = !!a.querySelector('.nav-icon');
         return !isExternal && !isIconLink;
     });
+    //Connects nav to filter logic (update to the above)
     navLinks.forEach(link => {
         link.addEventListener('click', e => {
             const text = (link.textContent || '').trim().toLowerCase();
