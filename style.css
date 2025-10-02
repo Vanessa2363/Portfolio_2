@@ -117,6 +117,18 @@ html,body{
 .header-tech-logos .logo-bg:nth-child(6) {
   transform: translateY(30px);
 }
+.header-tech-logos .logo-bg:nth-child(7) {
+  transform: translateY(0);
+}
+.header-tech-logos .logo-bg:nth-child(8) {
+  transform: translateY(30px);
+}
+.header-tech-logos .logo-bg:nth-child(9) {
+  transform: translateY(0);
+}
+.header-tech-logos .logo-bg:nth-child(10) {
+  transform: translateY(30px);
+}
 
 .computer-image{
   position: absolute;          

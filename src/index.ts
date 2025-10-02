@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const typewriterConfiguration: TypewriterConfig[] = [
     { text: 'Vanessa', elementId: 'header-first-animate', delay: 0 },
     { text: 'Guo', elementId: 'header-last-animate', delay: 500 },
-    { text: 'Developer & Designer', elementId: 'header-about-animate', delay: 1000 },
+    { text: 'Developer, Designer, Leader', elementId: 'header-about-animate', delay: 1000 },
   ];
 
   typewriterConfiguration.forEach(({ text, elementId, delay, speed = 80 }) => {
